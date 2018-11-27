@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 17, 2016 10:17:44 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.dto.Proyecto" table="proyecto" catalog="empresa_sw_honney" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empresas" class="modelo.dto.Empresas" fetch="select">
+            <column name="EMPRESAS_ID" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="45" not-null="true" />
+        </property>
+        <property name="fechaInicial" type="date">
+            <column name="FECHA_INICIAL" length="10" not-null="true" />
+        </property>
+        <property name="fechaFinal" type="date">
+            <column name="FECHA_FINAL" length="10" not-null="true" />
+        </property>
+        <property name="fechaRealFinal" type="date">
+            <column name="FECHA_REAL_FINAL" length="10" not-null="true" />
+        </property>
+        <set name="trabajadorProyectos" table="trabajador_proyecto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROYECTO_ID" not-null="true" />
+            </key>
+            <one-to-many class="modelo.dto.TrabajadorProyecto" />
+        </set>
+    </class>
+</hibernate-mapping>

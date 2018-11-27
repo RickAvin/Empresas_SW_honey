@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 17, 2016 10:17:44 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.dto.TrabajadorProyecto" table="trabajador_proyecto" catalog="empresa_sw_honney" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="proyecto" class="modelo.dto.Proyecto" fetch="select">
+            <column name="PROYECTO_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="trabajadores" class="modelo.dto.Trabajadores" fetch="select">
+            <column name="TRABAJADORES_ID" not-null="true" />
+        </many-to-one>
+        <property name="profesion" type="string">
+            <column name="PROFESION" length="45" not-null="true" />
+        </property>
+        <property name="horasTrabajadas" type="time">
+            <column name="HORAS_TRABAJADAS" length="8" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

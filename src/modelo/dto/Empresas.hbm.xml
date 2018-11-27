@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 17, 2016 10:17:44 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.dto.Empresas" table="empresas" catalog="empresa_sw_honney" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="45" not-null="true" />
+        </property>
+        <property name="rfc" type="string">
+            <column name="RFC" length="45" not-null="true" />
+        </property>
+        <property name="razonSocial" type="string">
+            <column name="RAZON_SOCIAL" length="45" />
+        </property>
+        <property name="municipio" type="string">
+            <column name="MUNICIPIO" length="45" />
+        </property>
+        <property name="colonia" type="string">
+            <column name="COLONIA" length="45" />
+        </property>
+        <property name="calle" type="string">
+            <column name="CALLE" length="45" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="10" />
+        </property>
+        <property name="logotipo" type="binary">
+            <column name="LOGOTIPO" />
+        </property>
+        <set name="proyectos" table="proyecto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EMPRESAS_ID" not-null="true" />
+            </key>
+            <one-to-many class="modelo.dto.Proyecto" />
+        </set>
+    </class>
+</hibernate-mapping>
